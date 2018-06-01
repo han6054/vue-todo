@@ -2,6 +2,7 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
+    <p>{{fullName}} {{count}}</p>
     <transition name='fade'>
         <router-view/>
     </transition>
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import {mapState, mapGetters, mapActions} from 'vuex'
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
 import Todo from './views/todo/todo.vue'
@@ -20,6 +22,31 @@ export default {
     Header,
     Footer,
     Todo
+  },
+  methods: {
+    ...mapActions(['updateCountAsync'])
+  },
+  mounted () {
+    // console.log(this.$store)
+    // let i = 1
+    // setInterval(() => {
+    //   this.$store.commit('updateCount', i++)
+    // }, 1000)
+    // this.$store.dispatch('updateCountAsync', {
+    //   num: 5,
+    //   time: 1000
+    // })
+    this.updateCountAsync({num: 5, time: 1000})
+  },
+  computed: {
+    ...mapState(['count']),
+    // count () {
+    //   return this.$store.state.count
+    // },
+    ...mapGetters(['fullName'])
+    // fullName () {
+    //   return this.$store.getters.fullName
+    // }
   }
 }
 </script>
