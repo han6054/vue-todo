@@ -3,12 +3,12 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const ExtractPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
-const VueServerPlugin = require('vue-server-render/server-plugin')
+const VueServerPlugin = require('vue-server-renderer/server-plugin')
 
 let config
 
 config = merge(baseConfig, {
-  target: node,
+  target: 'node',
   entry: path.join(__dirname, '../client/server-entry.js'),
   devtool: '#source-map',
   output: {
